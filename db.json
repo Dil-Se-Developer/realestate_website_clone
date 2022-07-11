@@ -1,14 +1,24 @@
 {
-    "users": [
-        {
-            "firstname": "Shail",
-            "lastname": "Shah",
-            "mobileno": "1234567890",
-            "emailid": "shailshah@21gmail.com",
-            "city": "Vadodara",
-            "country": "India",
-            "password": "123456",
-            "id": 1
-        }
-    ]
+  "users": [
+    {
+      "firstname": "Shail",
+      "lastname": "Shah",
+      "mobileno": "1234567890",
+      "emailid": "shailshah@21gmail.com",
+      "city": "Vadodara",
+      "country": "India",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "firstname": "Nandit",
+      "lastname": "Shah",
+      "mobileno": "9999999999",
+      "emailid": "nandu@gmai.com",
+      "city": "vadodara",
+      "country": "india",
+      "password": "123456789",
+      "id": 2
+    }
+  ]
 }

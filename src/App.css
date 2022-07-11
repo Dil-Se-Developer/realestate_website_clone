@@ -4,8 +4,88 @@
   --footer-bg-clr: #252525;
   --footer-font-clr: #ababab;
   --para-clr: #333;
+  --label-clr: #fff;
   --btn-bg-color: #fff;
   --btn-text-color: #1E1D85;
-  --card-bg-color: #2874F0;
+  --card-bg-color: #1E1D85;
   --toggle-color: #000;
+}
+
+.form_card {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  width: 70%;
+  margin: 4rem auto;
+  background-color: var(--card-bg-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem 1rem;
+}
+
+.form_card p {
+  color: var(--label-clr);
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.form_input {
+  padding: 10px;
+}
+
+.form_input label {
+  color: var(--label-clr);
+  font-weight: 400;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.form_input input {
+  padding: 0.3rem;
+  border-radius: 8px;
+  width: 90%;
+}
+
+.form_input button {
+  margin-top: 1.5rem;
+  width: 75%;
+}
+
+.login_card {
+  margin: 4rem auto 2rem auto;
+}
+
+.login_btn {
+  text-align: center;
+}
+
+.navigate_signup {
+  margin: 0rem auto 4rem auto;
+  background: transparent;
+  border: 1px solid var(--toggle-color);
+  max-width: 420px;
+  padding: 0.8rem;
+  text-decoration: none;
+  color: var(--para-clr);
+}
+
+.form_btn {
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.7rem 0rem;
+  border-radius: 0.2rem;
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
+  letter-spacing: 0.1rem;
+  border: none;
+}
+
+.form_btn:hover {
+  opacity: 0.8;
 }
