@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "firstname": "Shail",
+            "lastname": "Shah",
+            "mobileno": "1234567890",
+            "emailid": "shailshah@21gmail.com",
+            "city": "Vadodara",
+            "country": "India",
+            "password": "123456",
+            "id": 1
+        }
+    ]
+}

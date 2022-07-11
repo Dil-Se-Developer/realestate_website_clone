@@ -1,0 +1,68 @@
+.footer_city {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: var(--footer-bg-clr);
+}
+
+.footer_cards {
+    margin-top: 0.5rem;
+    flex: 50%;
+}
+
+.footer_cards h4 {
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.footer_cards p {
+    font-size: 0.7rem;
+    color: var(--footer-font-clr);
+}
+
+.footer_cards svg {
+    margin-right: 0.8rem;
+    cursor: pointer;
+    color: var(--footer-font-clr);
+}
+
+.footer_country {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer_end_card-1 {
+    flex: 1;
+}
+
+.footer_end_card_1 span {
+    font-size: 0.7rem;
+    color: var(--para-clr);
+    cursor: pointer;
+}
+
+
+/* responsive css */
+
+@media only screen and (min-width: 576px) {
+    .footer_country {
+        justify-content: space-between;
+    }
+
+    .footer_end_card-1 {
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer_city {
+        flex-direction: row;
+    }
+
+    .footer_cards {
+        margin-top: 0rem;
+        flex: 1;
+    }
+}
