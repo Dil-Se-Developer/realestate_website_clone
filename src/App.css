@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 450px;
+  max-width: 400px;
   width: 70%;
   margin: 4rem auto;
   background-color: var(--card-bg-color);
@@ -26,7 +26,7 @@
   padding: 1rem 1rem;
 }
 
-.form_card p {
+.error_para {
   color: var(--label-clr);
   text-align: center;
   font-weight: 400;
@@ -39,7 +39,7 @@
 
 .form_input label {
   color: var(--label-clr);
-  font-weight: 400;
+  font-weight: 500;
   display: block;
   margin-bottom: 0.4rem;
 }
@@ -53,6 +53,32 @@
 .form_input button {
   margin-top: 1.5rem;
   width: 75%;
+}
+
+.radio_heading {
+  color: var(--label-clr);
+  font-weight: 500;
+  display: block;
+  margin: 0.4rem 0rem 0.2rem 0.5rem;
+}
+
+.form_radio_group {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 0.5rem;
+}
+
+.form_radio label {
+  color: var(--label-clr);
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+  margin-right: 0.5rem;
+}
+
+.form_radio input {
+  width: 1rem;
+  height: 1rem;
+  outline: none;
 }
 
 .login_card {

@@ -9,7 +9,9 @@ const FormInput = (props) => {
     inputValue,
     onHandleChange,
     errorMessage,
+    errorClass,
     customClass,
+    checked
   } = props;
 
   return (
@@ -19,12 +21,14 @@ const FormInput = (props) => {
         <input
           type={inputType}
           name={inputName}
-          id={inputName}
+          id={inputType === 'radio' ? inputValue : inputName}
           value={inputValue}
           onChange={onHandleChange}
+          checked={checked}
+          autoComplete = 'off'
         />
       </div>
-      {errorMessage !== "" && <p>{errorMessage}</p>}
+      {errorMessage !== "" && <p className={errorClass}>{errorMessage}</p>}
     </>
   );
 };
