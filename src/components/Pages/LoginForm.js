@@ -67,6 +67,8 @@ const LoginForm = (props) => {
           if (userExist && formValues.account === 'customer') {
             // props.handleLogin();
             Navigate("/");
+          } else if (userExist && formValues.account === 'agent'){
+            Navigate("/agent");
           } else {
             alert("Kindly Check Account Type, Emailid, and Password");
           }
