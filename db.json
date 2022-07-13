@@ -2,15 +2,51 @@
   "alluserdata": [
     {
       "account": "customer",
-      "firstname": "",
-      "lastname": "",
+      "firstname": "Shail ",
+      "lastname": "Shah",
       "gender": "male",
-      "mobileno": "",
-      "emailid": "",
-      "city": "",
-      "country": "",
-      "password": "",
+      "mobileno": "1234567890",
+      "emailid": "shailshah@123gmail.com",
+      "city": "vadodara",
+      "country": "india",
+      "password": "123456",
       "id": 1
+    },
+    {
+      "account": "customer",
+      "firstname": "Harsh",
+      "lastname": "Maisuri",
+      "gender": "male",
+      "mobileno": "1123456790",
+      "emailid": "harsh@12gmail.com",
+      "city": "bhruch",
+      "country": "india",
+      "password": "124563",
+      "id": 2
+    },
+    {
+      "account": "agent",
+      "firstname": "Hardeep",
+      "lastname": "Martoja",
+      "gender": "male",
+      "mobileno": "1234578920",
+      "emailid": "hardeep@12gmail.com",
+      "city": "bhruch",
+      "country": "india",
+      "password": "fdfdfd",
+      "id": 3
+    },
+    {
+      "account": "agent",
+      "firstname": "joe",
+      "lastname": "doe",
+      "gender": "female",
+      "mobileno": "1234567890",
+      "emailid": "joe21@gmail.com",
+      "city": "usa",
+      "country": "india",
+      "password": "123456",
+      "id": 4
     }
   ]
 }

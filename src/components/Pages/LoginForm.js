@@ -1,33 +1,72 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserAgentAction } from "../../redux/actions/fetchUserAgentDataAction";
+import { loginAgentActions } from '../../redux/actions/loginAgentActions';
+import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
+  const dispatch = useDispatch();
+
   const intialValues = {
     account: "customer",
     emailid: "",
     password: "",
   };
+
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
+  // const agentStatus = useSelector((state) => state.agentStatus.agentStatus);
+  // console.log(agentStatus, 'agentStatus');
+  // console.log(usersData);
 
   const loginHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
-    setIsSubmit(true);
-    // console.log(formValues);
-  };
+
+    if (Object.keys(validate(formValues)).length === 0) {
+      const usersEmail = usersData.map((user) => user.emailid);
+      const usersPassword = usersData.map((user) => user.password);
+      const userExist = usersEmail.includes(formValues.emailid) && usersPassword.includes(formValues.password);
+
+      if (userExist) {
+        const findUser = usersData.find((userData) => userData.emailid === formValues.emailid)
+        dispatch(singleUserDataActions(findUser))
+        // console.log(findUser, "find"); 
+        // console.log(formValues.account, 'formval');
+        if (formValues.account === 'customer' && findUser.account === 'customer') {
+          dispatch(loginAgentActions(true))
+          Navigate("/");
+        } else if (formValues.account === 'agent' && findUser.account === 'agent') {
+          dispatch(loginAgentActions(true))
+          dispatch(agentStautsActions(true))
+          Navigate("/agent");
+        } else {
+          alert("Kindly Check Account Type")
+        }
+      } else {
+        alert("Kindly Check Emailid, and Password");
+      }
+
+    };
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  console.log(formValues);
+  // console.log(formValues);
+
+  useEffect(() => {
+    dispatch(fetchUserAgentAction());
+  }, [dispatch]);
+
 
   const validate = (values) => {
     const errors = {};
@@ -46,38 +85,6 @@ const LoginForm = (props) => {
     }
     return errors;
   };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      axios
-        .get(`http://localhost:5000/${formValues.account}`)
-        .then((responses) => responses.data)
-        .then((usersData) => {
-          let usersEmail = usersData.map((user) => user.emailid);
-          let usersPassword = usersData.map((user) => user.password);
-          // console.log(usersData);
-          // console.log(usersEmail);
-          // console.log(usersPassword);
-          return (
-            usersEmail.includes(formValues.emailid) &&
-            usersPassword.includes(formValues.password)
-          );
-        })
-        .then((userExist) => {
-          if (userExist && formValues.account === 'customer') {
-            // props.handleLogin();
-            Navigate("/");
-          } else if (userExist && formValues.account === 'agent'){
-            Navigate("/agent");
-          } else {
-            alert("Kindly Check Account Type, Emailid, and Password");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [formErrors]);
 
   return (
     <>
@@ -115,6 +122,7 @@ const LoginForm = (props) => {
             inputValue={formValues.emailid}
             errorMessage={formErrors.emailid}
             onHandleChange={handleChange}
+            errorClass={"error_para"}
             customClass={"form_input"}
           />
           <FormInput
@@ -124,6 +132,7 @@ const LoginForm = (props) => {
             inputValue={formValues.password}
             errorMessage={formErrors.password}
             onHandleChange={handleChange}
+            errorClass={"error_para"}
             customClass={"form_input"}
           />
 

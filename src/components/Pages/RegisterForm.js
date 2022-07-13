@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addUserData,
   fetchUserAgentAction,
 } from "../../redux/actions/fetchUserAgentDataAction";
+import { loginAgentActions } from '../../redux/actions/loginAgentActions';
+import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
 
-const RegisterForm = (props) => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const intialValues = {
@@ -27,9 +29,8 @@ const RegisterForm = (props) => {
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
-  const error = useSelector((state) => state.fetchUserAgent.FetchError);
+  // const error = useSelector((state) => state.fetchUserAgent.FetchError);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,18 +43,23 @@ const RegisterForm = (props) => {
     // const userEmaild = usersData.find((e) => e.emailid === formValues.emailid);
     const userEmaild = usersData.map((user) => user.emailid);
     const userEmaildExist = userEmaild.includes(formValues.emailid);
-    console.log(userEmaildExist);
+    // console.log(userEmaildExist);
 
     if (userEmaildExist) {
       alert("user already exit");
       return;
     }
 
-    if (Object.keys(formErrors).length === 0) {
+    if (Object.keys(validate(formValues)).length === 0) {
+      // console.log(formErrors, "error");
       dispatch(addUserData(formValues));
+      dispatch(singleUserDataActions(formValues));
       if (formValues.account === "customer") {
+        dispatch(loginAgentActions(true))
         Navigate("/");
       } else {
+        dispatch(loginAgentActions(true))
+        dispatch(agentStautsActions(true))
         Navigate("/agent");
       }
     }
@@ -63,8 +69,8 @@ const RegisterForm = (props) => {
     dispatch(fetchUserAgentAction());
   }, [dispatch]);
 
-  console.log(formErrors, "error");
-  console.log(usersData);
+  // console.log(formErrors, "error");
+  // console.log(usersData);
 
   const validate = (values) => {
     const errors = {};

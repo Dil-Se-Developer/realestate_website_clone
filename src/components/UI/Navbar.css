@@ -34,6 +34,59 @@
     opacity: 0.8;
 }
 
+.user_profile {
+    display: flex;
+    align-items: center;
+}
+
+.user_profile_logo {
+    color: var(--profile-text-color);
+    background-color: var( --profile-bg-color);
+    font-size: 1.1rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 50%;
+    font-weight: 700;
+    margin-right: 0.3rem;
+}
+
+.user_profile_dropdown {
+    color: #fff;
+    background-color: #1E1D85;
+    outline: none;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    width: 5.3rem;
+    margin-right: 0.5rem;
+}
+
+.user_profile_dropdown option {
+    font-size: 0.9rem;
+}
+
+.addlisting_btn {
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    margin-left: 0.5rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.3rem;
+    letter-spacing: 0.1rem;
+    /* text-transform: uppercase; */
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+}
+
+.addlisting_btn:hover {
+    opacity: 0.8;
+}
+
+.addlisting_btn svg {
+    position: relative;
+    top: 0.2rem;
+}
 
 /* Responsive CSS */
 

@@ -20,6 +20,9 @@ export const addUserData = (data) => {
         data
       );
       dispatch(fetchUserAgentAction());
-    } catch (error) {}
+      return response
+    } catch (error) {
+      return error.message
+    }
   };
 };
