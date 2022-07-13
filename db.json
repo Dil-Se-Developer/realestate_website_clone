@@ -1,157 +1,16 @@
 {
-  "users": [
+  "alluserdata": [
     {
-      "firstname": "Shail",
-      "lastname": "Shah",
-      "mobileno": "1234567890",
-      "emailid": "shailshah@21gmail.com",
-      "city": "Vadodara",
-      "country": "India",
-      "password": "123456",
+      "account": "customer",
+      "firstname": "",
+      "lastname": "",
+      "gender": "male",
+      "mobileno": "",
+      "emailid": "",
+      "city": "",
+      "country": "",
+      "password": "",
       "id": 1
-    },
-    {
-      "firstname": "Nandit",
-      "lastname": "Shah",
-      "mobileno": "9999999999",
-      "emailid": "nandu@gmai.com",
-      "city": "vadodara",
-      "country": "india",
-      "password": "123456789",
-      "id": 2
-    },
-    {
-      "firstname": "Harsh",
-      "lastname": "Mansuri",
-      "mobileno": "1234567890",
-      "emailid": "harhs@ggs.vom",
-      "city": "bharuch",
-      "country": "india ",
-      "password": "123456",
-      "id": 3
-    },
-    {
-      "firstname": "fd",
-      "lastname": "fdf",
-      "gender": "",
-      "mobileno": "1234567890",
-      "emailid": "fdf@gmail.com",
-      "city": "vadodara",
-      "country": "india",
-      "password": "123456",
-      "id": 4
-    },
-    {
-      "account": "customer",
-      "firstname": "Hardeep",
-      "lastname": "Martoja",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "hardeep@maom.com",
-      "city": "bharuch",
-      "country": "India",
-      "password": "123456",
-      "id": 5
-    },
-    {
-      "account": "agent",
-      "firstname": "shail",
-      "lastname": "shah",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "shail@.fvv.com",
-      "city": "ajld",
-      "country": "fdfld",
-      "password": "fldfdks",
-      "id": 6
-    }
-  ],
-  "customer": [
-    {
-      "account": "customer",
-      "firstname": "Shail ",
-      "lastname": "Shah",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "shailshah@gmail.com",
-      "city": "vadodara",
-      "country": "gujarat",
-      "password": "123456",
-      "id": 1
-    },
-    {
-      "account": "customer",
-      "firstname": "Harsh",
-      "lastname": "Maisuri",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "harsh21@gmail.com",
-      "city": "bharuch",
-      "country": "india",
-      "password": "123456",
-      "id": 2
-    },
-    {
-      "account": "customer",
-      "firstname": "dfld",
-      "lastname": "fldfk",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "fdf@gga.com",
-      "city": "fdl",
-      "country": "fdlfl",
-      "password": "fdlfdl",
-      "id": 3
-    }
-  ],
-  "agent": [
-    {
-      "account": "agent",
-      "firstname": "Hardeep",
-      "lastname": "Martoja",
-      "gender": "female",
-      "mobileno": "3698714325",
-      "emailid": "hardeep@21gmail.com",
-      "city": "bhruch",
-      "country": "india",
-      "password": "fdfdfd",
-      "id": 1
-    },
-    {
-      "account": "agent",
-      "firstname": "Sunil",
-      "lastname": "Salat",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "sunil21@gmail.com",
-      "city": "vasad",
-      "country": "india",
-      "password": "123546",
-      "id": 2
-    },
-    {
-      "account": "agent",
-      "firstname": "Raj",
-      "lastname": "Hanani",
-      "gender": "male",
-      "mobileno": "1234567890",
-      "emailid": "raj@gmaol.com",
-      "city": "fld",
-      "country": "fldfl",
-      "password": "fjsdlf",
-      "id": 3
-    },
-    {
-      "account": "agent",
-      "firstname": "fdk",
-      "lastname": "dfdsl",
-      "gender": "female",
-      "mobileno": "1234567890",
-      "emailid": "fddfd@gamo.com",
-      "city": "fdfd",
-      "country": "fdfd",
-      "password": "1234565",
-      "id": 4
     }
   ]
 }

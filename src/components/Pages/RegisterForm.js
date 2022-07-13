@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addUserData,
+  fetchUserAgentAction,
+} from "../../redux/actions/fetchUserAgentDataAction";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
 
 const RegisterForm = (props) => {
+  const dispatch = useDispatch();
+
   const intialValues = {
     account: "customer",
     firstname: "",
@@ -21,6 +28,8 @@ const RegisterForm = (props) => {
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
+  const error = useSelector((state) => state.fetchUserAgent.FetchError);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,42 +39,32 @@ const RegisterForm = (props) => {
   const registerHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
-    setIsSubmit(true);
+    // const userEmaild = usersData.find((e) => e.emailid === formValues.emailid);
+    const userEmaild = usersData.map((user) => user.emailid);
+    const userEmaildExist = userEmaild.includes(formValues.emailid);
+    console.log(userEmaildExist);
+
+    if (userEmaildExist) {
+      alert("user already exit");
+      return;
+    }
+
+    if (Object.keys(formErrors).length === 0) {
+      dispatch(addUserData(formValues));
+      if (formValues.account === "customer") {
+        Navigate("/");
+      } else {
+        Navigate("/agent");
+      }
+    }
   };
 
   useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // console.log(formValues);
-      axios
-        .get(`http://localhost:5000/${formValues.account}`)
-        .then((responses) => responses.data)
-        .then((usersData) => {
-          let usersEmail = usersData.map((user) => user.emailid);
-          return usersEmail.includes(formValues.emailid);
-        })
-        .then((userExist) => {
-          if (userExist) {
-            alert("User is already exit");
-          } else {
-            axios
-              .post(`http://localhost:5000/${formValues.account}`, formValues)
-              .then(() => {
-                if (formValues.account === 'customer'){
-                  // props.handleLogin()
-                  Navigate("/");
-              } else {
-                Navigate('/agent');
-              }})
-              .catch((error) => {
-                console.log(error);
-              });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [formErrors]);
+    dispatch(fetchUserAgentAction());
+  }, [dispatch]);
+
+  console.log(formErrors, "error");
+  console.log(usersData);
 
   const validate = (values) => {
     const errors = {};
@@ -106,7 +105,7 @@ const RegisterForm = (props) => {
     <>
       <div className="form_card">
         <form>
-        <p className="radio_heading">Account Type :  </p>
+          <p className="radio_heading">Account Type : </p>
           <div className="form_radio_group">
             <FormInput
               inputLabel="Customer"
@@ -116,7 +115,7 @@ const RegisterForm = (props) => {
               onHandleChange={handleChange}
               // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
-              checked={formValues.account === 'customer'}
+              checked={formValues.account === "customer"}
             />
 
             <FormInput
@@ -127,7 +126,7 @@ const RegisterForm = (props) => {
               onHandleChange={handleChange}
               // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
-              checked={formValues.account === 'agent'}
+              checked={formValues.account === "agent"}
             />
           </div>
 
@@ -153,7 +152,7 @@ const RegisterForm = (props) => {
             customClass={"form_input"}
           />
 
-          <p className="radio_heading">Gender:  </p>
+          <p className="radio_heading">Gender: </p>
           <div className="form_radio_group">
             <FormInput
               inputLabel="Male"
@@ -163,7 +162,7 @@ const RegisterForm = (props) => {
               onHandleChange={handleChange}
               // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
-              checked={formValues.gender === 'male'}
+              checked={formValues.gender === "male"}
             />
 
             <FormInput
@@ -174,7 +173,7 @@ const RegisterForm = (props) => {
               onHandleChange={handleChange}
               // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
-              checked={formValues.gender === 'female'}
+              checked={formValues.gender === "female"}
             />
           </div>
 
