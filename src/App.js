@@ -17,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/agent" element={<Agent />} />
-        <Route path="/agent/addlisting" element={<AddListing />} />
+        <Route path="/agent/addlisting" element={<AddListing isEditing={false} />} />
+        <Route path="/agent/editlisting/:propertyId" element={<AddListing isEditing={true} />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/editprofile" element={<EditProfile />} />

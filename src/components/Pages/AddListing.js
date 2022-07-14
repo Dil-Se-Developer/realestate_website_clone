@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addProduct } from "../../redux/actions/fetchProductsAction";
+import { useNavigate, useParams } from "react-router-dom";
+import { addProduct, updateProduct } from "../../redux/actions/fetchProductsAction";
 import FormInput from "../UI/FormInput";
 import "./AddListing.css";
 
-const AddListing = () => {
+const AddListing = ({ isEditing }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const singleUserData = useSelector(
     (state) => state.singleUserData.singleUserData
   );
-  // console.log(singleUserData.id);
 
-  const initialValues = {
+  const [formValues, setFormValues] = useState({
     agentId: singleUserData.id,
     propertytype: "sale",
     propertyname: "",
@@ -22,10 +22,9 @@ const AddListing = () => {
     bedrooms: "",
     price: "",
     postimg: "",
-  };
+  });
 
-  const [formValues, setFormValues] = useState(initialValues);
-
+  console.log(formValues, 'formvalues');
   const [errorObj, setErrorObj] = useState({
     propertyname: false,
     propertyaddress: false,
@@ -39,7 +38,7 @@ const AddListing = () => {
     event.preventDefault();
     validate(formValues);
     if (!Object.values(formValues).includes("")) {
-      dispatch(addProduct(formValues));
+      isEditing ? dispatch(updateProduct(formValues)) : dispatch(addProduct(formValues));
       Navigate("/agent");
     }
   };
@@ -82,6 +81,13 @@ const AddListing = () => {
     });
   };
 
+  const { propertyId } = useParams()
+
+  useEffect(() => {
+    // If Agent is editing the property
+    isEditing && axios.get(`http://localhost:5000/products/${propertyId}`).then((res) => setFormValues(res.data))
+  }, [])
+
   return (
     <>
       <div className="form_card">
@@ -115,7 +121,7 @@ const AddListing = () => {
             inputLabel="Property Name :"
             inputType="text"
             inputName="propertyname"
-            inputValue={formValues.firstname}
+            inputValue={formValues.propertyname}
             onHandleChange={handleChange}
             // errorMessage={formErrors.firstname}
             errorMessage={
@@ -129,7 +135,7 @@ const AddListing = () => {
             inputLabel="Property Address :"
             inputType="text"
             inputName="propertyaddress"
-            inputValue={formValues.lastname}
+            inputValue={formValues.propertyaddress}
             onHandleChange={handleChange}
             // errorMessage={formErrors.lastname}
             errorMessage={
@@ -143,7 +149,7 @@ const AddListing = () => {
             inputLabel="Property Sq.ft :"
             inputType="number"
             inputName="propertysq"
-            inputValue={formValues.mobileno}
+            inputValue={formValues.propertysq}
             onHandleChange={handleChange}
             // errorMessage={formErrors.mobileno}
             errorMessage={
@@ -157,7 +163,7 @@ const AddListing = () => {
             inputLabel="Bedrooms :"
             inputType="number"
             inputName="bedrooms"
-            inputValue={formValues.emailid}
+            inputValue={formValues.bedrooms}
             onHandleChange={handleChange}
             // errorMessage={formErrors.emailid}
             errorMessage={errorObj.bedrooms ? "Bedrooms No. is required" : ""}
@@ -169,7 +175,7 @@ const AddListing = () => {
             inputLabel="Price :"
             inputType="number"
             inputName="price"
-            inputValue={formValues.city}
+            inputValue={formValues.price}
             onHandleChange={handleChange}
             // errorMessage={formErrors.city}
             errorMessage={errorObj.price ? "Price is required" : ""}
@@ -200,7 +206,7 @@ const AddListing = () => {
 
           <div className="form_input login_btn">
             <button className="form_btn" onClick={postHandler}>
-              Add Property
+              {isEditing ? "Update Property " : "Add Property"}
             </button>
           </div>
         </form>

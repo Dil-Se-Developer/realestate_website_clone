@@ -13,3 +13,10 @@ export const errorFetchUserAgentData = (error) => {
     payload: error,
   };
 };
+
+export const fetchAgentProductsData = (agentproductsdata) => {
+  return {
+    type: ActionTypes.FETCH_AGENT_PRODUCTS_DATA,
+    payload: agentproductsdata,
+  };
+};
