@@ -26,3 +26,19 @@ export const addUserData = (data) => {
     }
   };
 };
+
+
+export const updateUserData = (existingValues) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/alluserdata/${existingValues.id}`,
+        existingValues
+      );
+      dispatch(fetchUserAgentAction());
+      return response
+    } catch (error) {
+      return error.message
+    }
+  };
+};
