@@ -19,7 +19,7 @@ export const addProduct = (data) => {
                 `http://localhost:5000/products`,
                 data
             );
-            // dispatch(fetchAgentProductsDataAction(data.agentId))
+            dispatch(fetchAgentProductsDataAction(data.agentId))
             console.log(response);
             return response
         } catch (error) {

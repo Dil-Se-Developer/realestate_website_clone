@@ -1,53 +1,18 @@
-.sellcard {
+.product_link_section {
+    margin-top: 0.2rem;
     display: flex;
-    flex-direction: column;
-    background: white;
-    cursor: pointer;
-    padding: 0.8rem;
-    border: 1px solid rgba(14, 4, 5, .2);
-    border-radius: 4px;
-    /* flex: 20%; */
+    justify-content: space-between;
 }
 
-.sellcard img {
-    width: 250px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 2px;
-}
-
-.sellcard h3 {
-    margin: 0rem 0.2rem;
-}
-
-.sellcard h2 {
-    margin: 0.2rem 0.2rem 0rem 0.2rem;
-    font-weight: 500;
-}
-
-.sellcard p {
-    text-transform: capitalize;
-    margin: 0.1rem 0.2rem;
-    font-weight: 500;
-    color: #1E1D85;
+.product_link_section a {
+    text-decoration: none;
     font-size: 0.9rem;
-}
-
-.sellcardicon {
-    display: flex;
-    margin: 0.1rem 0.1rem;
-}
-
-.sellcardicon svg{
-    margin: 0.1rem 0.2rem;
-}
-
-.sellcard button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 0rem;
-    background-color: #2874F0;
-    border: none;
-    color: white;
+    background-color: #1E1D85;
+    color: #fff;
+    padding: 0.3rem;
     border-radius: 0.2rem;
-    cursor: pointer;
+}
+
+.product_link_section a:hover {
+    opacity: 0.9;
 }

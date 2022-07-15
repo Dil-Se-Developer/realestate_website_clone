@@ -1,9 +1,87 @@
-.sellproducts {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 30px;
-    column-gap: 20px;
-    padding: 2rem;
-    justify-content: space-evenly;
-    /* padding: 1.5rem 5rem; */
-} 
+.home_background_img {
+    width: 100%;
+    margin: 0 auto;
+    background-image: linear-gradient(-36deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url(../../assets/img6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 10.5rem 0rem 10.5rem 0rem;
+    position: relative;
+}
+
+.home_background_img h2 {
+    text-align: center;
+    color: var(--primary-white);
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+}
+
+.home_background_img p {
+    text-align: center;
+    color: var(--primary-white);
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.home_btn_group {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.home_btn_group button {
+    background-color: #1E1D85;
+    color: var(--primary-white);
+    margin-left: 0.5rem;
+    border-radius: 0.2rem;
+    padding: 0.7rem 0.4rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+}
+
+.home_btn_group button:hover {
+    opacity: 0.9;
+}
+
+.home_search_section {
+    position: absolute;
+    left: 50%;
+    top: 77%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-white);
+    padding: 1.5rem 1rem;
+    border-radius: 0.2rem;
+}
+
+.home_search_section input {
+    /* border: none; */
+    /* border-color: gray; */
+    outline: none;
+    border: 1px solid gray;
+    padding: 0.5rem 0.2rem;
+    border-radius: 0.4rem;
+}
+
+.home_search_section button {
+    background-color: #1E1D85;
+    color: var(--primary-white);
+    margin-left: 0.5rem;
+    border-radius: 0.2rem;
+    padding: 0.7rem 0.4rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+}
+
+.home_search_section button:hover {
+    opacity: 0.9;
+}
+

@@ -2,7 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addProduct, updateProduct } from "../../redux/actions/fetchProductsAction";
+import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+import {
+  addProduct,
+  updateProduct,
+} from "../../redux/actions/fetchProductsAction";
 import FormInput from "../UI/FormInput";
 import "./AddListing.css";
 
@@ -24,7 +28,7 @@ const AddListing = ({ isEditing }) => {
     postimg: "",
   });
 
-  console.log(formValues, 'formvalues');
+  // console.log(formValues, 'formvalues');
   const [errorObj, setErrorObj] = useState({
     propertyname: false,
     propertyaddress: false,
@@ -38,7 +42,9 @@ const AddListing = ({ isEditing }) => {
     event.preventDefault();
     validate(formValues);
     if (!Object.values(formValues).includes("")) {
-      isEditing ? dispatch(updateProduct(formValues)) : dispatch(addProduct(formValues));
+      isEditing
+        ? dispatch(updateProduct(formValues)).then(dispatch(agentStautsActions(true)))
+        : dispatch(addProduct(formValues));
       Navigate("/agent");
     }
   };
@@ -81,12 +87,15 @@ const AddListing = ({ isEditing }) => {
     });
   };
 
-  const { propertyId } = useParams()
+  const { propertyId } = useParams();
 
   useEffect(() => {
     // If Agent is editing the property
-    isEditing && axios.get(`http://localhost:5000/products/${propertyId}`).then((res) => setFormValues(res.data))
-  }, [])
+    isEditing &&
+      axios
+        .get(`http://localhost:5000/products/${propertyId}`)
+        .then((res) => setFormValues(res.data));
+  }, []);
 
   return (
     <>

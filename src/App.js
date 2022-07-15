@@ -7,6 +7,7 @@ import AddListing from "./components/Pages/AddListing";
 import LoginForm from "./components/Pages/LoginForm";
 import RegisterForm from "./components/Pages/RegisterForm";
 import EditProfile from "./components/Pages/EditProfile";
+import ProductDetail from "./components/Pages/ProductDetail";
 import Footer from "./components/UI/Footer";
 import "./App.css";
 
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/productdetail" element={<ProductDetail/>} />
         <Route path="/agent" element={<Agent />} />
         <Route path="/agent/addlisting" element={<AddListing isEditing={false} />} />
         <Route path="/agent/editlisting/:propertyId" element={<AddListing isEditing={true} />} />

@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../redux/actions/fetchProductsAction'
 import { useNavigate } from 'react-router';
+import { agentStautsActions } from '../../redux/actions/agentStatusActions';
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import './AgentProductCard.css'
@@ -10,8 +11,10 @@ const AgentProductCard = (props) => {
   const dispatch = useDispatch();
   const { agentId, id, propertyname, propertytype, price, postimg } = props.agentProductData;
   const Navigate = useNavigate()
+
   const editHandler = (id) => {
     Navigate(`/agent/editlisting/${id}`)
+    dispatch(agentStautsActions(false))
   }
 
   const deleteHandler = (id, agentId) => {
