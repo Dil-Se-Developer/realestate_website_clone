@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchUserAgentAction,
-  updateUserData
+  updateUserData,
 } from "../../redux/actions/fetchUserAgentDataAction";
 // import { loginAgentActions } from '../../redux/actions/loginAgentActions';
-import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+import { agentStautsActions } from "../../redux/actions/agentStatusActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
@@ -15,14 +15,27 @@ const EditProfile = () => {
   const dispatch = useDispatch();
 
   const Navigate = useNavigate();
-  const [existingValues, setExistingValues] = useState({});
+  const [existingValues, setExistingValues] = useState({
+    account: "",
+    firstname: "",
+    lastname: "",
+    gender: "",
+    mobileno: "",
+    emailid: "",
+    city: "",
+    country: "",
+    password: "",
+  });
+
   const [formErrors, setFormErrors] = useState({});
   const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
   const singleUserData = useSelector(
     (state) => state.singleUserData.singleUserData
   );
 
-  const filterUsersData = usersData.filter((userData) => userData.emailid !== singleUserData.emailid)
+  const filterUsersData = usersData.filter(
+    (userData) => userData.emailid !== singleUserData.emailid
+  );
   // const error = useSelector((state) => state.fetchUserAgent.FetchError);
 
   useEffect(() => {
@@ -32,7 +45,7 @@ const EditProfile = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setExistingValues((prevExistingValues) => {
-      return { ...prevExistingValues, [name]: value }
+      return { ...prevExistingValues, [name]: value };
     });
   };
 
@@ -54,11 +67,11 @@ const EditProfile = () => {
       dispatch(singleUserDataActions(existingValues));
       if (existingValues.account === "customer") {
         // dispatch(loginAgentActions(true))
-        dispatch(agentStautsActions(false))
+        dispatch(agentStautsActions(false));
         Navigate("/");
       } else {
         // dispatch(loginAgentActions(true))
-        dispatch(agentStautsActions(true))
+        dispatch(agentStautsActions(true));
         Navigate("/agent");
       }
     }
@@ -104,7 +117,7 @@ const EditProfile = () => {
   };
 
   return (
-    <>
+    <div className="editprofile_background_img">
       <div className="form_card">
         <form>
           <p className="radio_heading">Account Type : </p>
@@ -241,7 +254,7 @@ const EditProfile = () => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

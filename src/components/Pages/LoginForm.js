@@ -87,7 +87,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <>
+    <div className="login_background_img">
       <div className="form_card login_card">
         <form>
           <p className="radio_heading">Account Type : </p>
@@ -146,7 +146,7 @@ const LoginForm = (props) => {
       <Link className="form_card navigate_signup" to="/register">
         Create an account
       </Link>
-    </>
+    </div>
   );
 };
 

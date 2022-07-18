@@ -108,7 +108,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <>
+    <div className="register_background_img">
       <div className="form_card">
         <form>
           <p className="radio_heading">Account Type : </p>
@@ -245,7 +245,7 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

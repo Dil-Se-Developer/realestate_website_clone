@@ -8,7 +8,7 @@ import {
   updateProduct,
 } from "../../redux/actions/fetchProductsAction";
 import FormInput from "../UI/FormInput";
-import "./AddListing.css";
+import "./PropertyForm.css";
 
 const AddListing = ({ isEditing }) => {
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const AddListing = ({ isEditing }) => {
   }, []);
 
   return (
-    <>
+    <div className="propertyform_background_img">
       <div className="form_card">
         <form>
           <p className="radio_heading">Property Type : </p>
@@ -220,7 +220,7 @@ const AddListing = ({ isEditing }) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

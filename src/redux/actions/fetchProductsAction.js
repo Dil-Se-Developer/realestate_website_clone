@@ -20,7 +20,7 @@ export const addProduct = (data) => {
                 data
             );
             dispatch(fetchAgentProductsDataAction(data.agentId))
-            console.log(response);
+            // console.log(response);
             return response
         } catch (error) {
             return error.message

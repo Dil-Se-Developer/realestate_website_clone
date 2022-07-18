@@ -21,7 +21,7 @@
   align-items: center;
   max-width: 400px;
   width: 70%;
-  margin: 4rem auto;
+  margin: 0rem auto;
   background-color: var(--card-bg-color);
   border-radius: 10px;
   font-size: 1rem;
@@ -62,13 +62,14 @@
   color: var(--label-clr);
   font-weight: 500;
   display: block;
-  margin: 0.4rem 0rem 0.2rem 0.5rem;
+  margin: 0.4rem 0rem 0.4rem 0.5rem;
 }
 
 .form_radio_group {
   display: flex;
   justify-content: space-evenly;
   margin-left: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .form_radio label {
@@ -85,7 +86,7 @@
 }
 
 .login_card {
-  margin: 4rem auto 2rem auto;
+  margin: 0rem auto 1.5rem auto;
 }
 
 .login_btn {
@@ -93,25 +94,26 @@
 }
 
 .navigate_signup {
-  margin: 0rem auto 4rem auto;
+  margin: 0rem auto 0rem auto;
   background: transparent;
-  border: 1px solid var(--toggle-color);
+  /* border: 1px solid var(--toggle-color); */
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
   max-width: 420px;
   padding: 0.8rem;
   text-decoration: none;
-  color: var(--para-clr);
+  color: var(--primary-white);
 }
 
 .form_btn {
-  letter-spacing: 0.1rem;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.7rem 0rem;
+  padding: 0.6rem 0rem;
   border-radius: 0.2rem;
   background-color: var(--btn-bg-color);
   color: var(--btn-text-color);
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
   border: none;
 }
 

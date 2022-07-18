@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/UI/Navbar";
 import Home from "./components/Pages/Home";
 import Agent from "./components/Pages/Agent";
-import AddListing from "./components/Pages/AddListing";
+import PropertyForm from "./components/Pages/PropertyForm";
 import LoginForm from "./components/Pages/LoginForm";
 import RegisterForm from "./components/Pages/RegisterForm";
 import EditProfile from "./components/Pages/EditProfile";
@@ -17,10 +17,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/productdetail" element={<ProductDetail/>} />
+        <Route path="/productdetail/:productId" element={<ProductDetail/>} />
         <Route path="/agent" element={<Agent />} />
-        <Route path="/agent/addlisting" element={<AddListing isEditing={false} />} />
-        <Route path="/agent/editlisting/:propertyId" element={<AddListing isEditing={true} />} />
+        <Route path="/agent/addlisting" element={<PropertyForm isEditing={false} />} />
+        <Route path="/agent/editlisting/:propertyId" element={<PropertyForm isEditing={true} />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/editprofile" element={<EditProfile />} />

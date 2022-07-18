@@ -12,7 +12,7 @@ const CustomerProductCard = (props) => {
       <h3> &#x20B9; {price}</h3>
       <div className='product_link_section'>
         <a href={'https://wa.me/' + 9191919199} target="_blank" rel="noopener noreferrer" >Contact To Agent</a>
-        <Link to='/productdetail'>More Info</Link>
+        <Link to={`/productdetail/${id}`}>More Info</Link>
       </div>
     </div>
   )
