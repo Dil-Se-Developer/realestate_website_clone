@@ -31,26 +31,26 @@ const LoginForm = (props) => {
 
     if (Object.keys(validate(formValues)).length === 0) {
       const usersEmail = usersData.map((user) => user.emailid);
-      const usersPassword = usersData.map((user) => user.password);
-      const userExist = usersEmail.includes(formValues.emailid) && usersPassword.includes(formValues.password);
+      // const usersPassword = usersData.map((user) => user.password);
+      const userExist = usersEmail.includes(formValues.emailid);
 
       if (userExist) {
         const findUser = usersData.find((userData) => userData.emailid === formValues.emailid)
         dispatch(singleUserDataActions(findUser))
-        // console.log(findUser, "find"); 
-        // console.log(formValues.account, 'formval');
-        if (formValues.account === 'customer' && findUser.account === 'customer') {
+        // console.log(findUser.password, "find"); 
+        // console.log(formValues.password, 'formval');
+        if (formValues.account === 'customer' && findUser.account === 'customer' && findUser.password === formValues.password) {
           dispatch(loginAgentActions(true))
           Navigate("/");
-        } else if (formValues.account === 'agent' && findUser.account === 'agent') {
+        } else if (formValues.account === 'agent' && findUser.account === 'agent' && findUser.password === formValues.password) {
           dispatch(loginAgentActions(true))
           dispatch(agentStautsActions(true))
           Navigate("/agent");
         } else {
-          alert("Kindly Check Account Type")
+          alert("Kindly Check Account Type or Password")
         }
       } else {
-        alert("Kindly Check Emailid, and Password");
+        alert("Kindly Check Emailid");
       }
 
     };
