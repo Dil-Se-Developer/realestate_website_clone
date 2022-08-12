@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchUserAgentAction,
-  updateUserData,
-} from "../../redux/actions/fetchUserAgentDataAction";
+// import {
+//   fetchUserAgentAction,
+//   updateUserData,
+// } from "../../redux/actions/fetchUserAgentDataAction";
 // import { loginAgentActions } from '../../redux/actions/loginAgentActions';
-import { agentStautsActions } from "../../redux/actions/agentStatusActions";
-import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+// import { agentStautsActions } from "../../redux/actions/agentStatusActions";
+// import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+import {
+  setAgentStatus,
+  setSingleUserData,
+  fetchUserAgentData,
+  updateUserData,
+} from "../../redux_tookit/slices/userAgentDataSlice";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./EditProfile.css";
@@ -28,9 +34,9 @@ const EditProfile = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
-  const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
+  const usersData = useSelector((state) => state.userAgentData.UserAgentData);
   const singleUserData = useSelector(
-    (state) => state.singleUserData.singleUserData
+    (state) => state.userAgentData.singleUserData
   );
 
   const filterUsersData = usersData.filter(
@@ -64,22 +70,22 @@ const EditProfile = () => {
 
     if (Object.keys(validate(existingValues)).length === 0) {
       dispatch(updateUserData(existingValues));
-      dispatch(singleUserDataActions(existingValues));
+      dispatch(setSingleUserData(existingValues));
       if (existingValues.account === "customer") {
         // dispatch(loginAgentActions(true))
-        dispatch(agentStautsActions(false));
+        dispatch(setAgentStatus(false));
         Navigate("/");
       } else {
         // dispatch(loginAgentActions(true))
-        dispatch(agentStautsActions(true));
+        dispatch(setAgentStatus(true));
         Navigate("/agent");
       }
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUserAgentAction());
-  }, [dispatch]);
+    dispatch(fetchUserAgentData());
+  }, []);
 
   const validate = (values) => {
     const errors = {};

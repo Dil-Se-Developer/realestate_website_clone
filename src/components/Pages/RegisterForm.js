@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import {
+//   addUserData,
+//   fetchUserAgentAction,
+// } from "../../redux/actions/fetchUserAgentDataAction";
+// import { loginAgentActions } from '../../redux/actions/loginAgentActions';
+// import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+// import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import {
+  fetchUserAgentData,
   addUserData,
-  fetchUserAgentAction,
-} from "../../redux/actions/fetchUserAgentDataAction";
-import { loginAgentActions } from '../../redux/actions/loginAgentActions';
-import { agentStautsActions } from '../../redux/actions/agentStatusActions';
-import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+  setLoginStatus,
+  setAgentStatus,
+  setSingleUserData,
+} from "../../redux_tookit/slices/userAgentDataSlice";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
@@ -29,7 +36,7 @@ const RegisterForm = () => {
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
+  const usersData = useSelector((state) => state.userAgentData.UserAgentData);
   // const error = useSelector((state) => state.fetchUserAgent.FetchError);
 
   const handleChange = (event) => {
@@ -53,21 +60,21 @@ const RegisterForm = () => {
     if (Object.keys(validate(formValues)).length === 0) {
       // console.log(formErrors, "error");
       dispatch(addUserData(formValues));
-      dispatch(singleUserDataActions(formValues));
+      dispatch(setSingleUserData(formValues));
       if (formValues.account === "customer") {
-        dispatch(loginAgentActions(true))
+        dispatch(setLoginStatus(true))
         Navigate("/");
       } else {
-        dispatch(loginAgentActions(true))
-        dispatch(agentStautsActions(true))
+        dispatch(setLoginStatus(true))
+        dispatch(setAgentStatus(true))
         Navigate("/agent");
       }
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUserAgentAction());
-  }, [dispatch]);
+    dispatch(fetchUserAgentData());
+  }, []);
 
   // console.log(formErrors, "error");
   // console.log(usersData);

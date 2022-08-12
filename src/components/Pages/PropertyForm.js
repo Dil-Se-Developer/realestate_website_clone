@@ -2,11 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+// import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+// import {
+//   addProduct,
+//   updateProduct,
+// } from "../../redux/actions/fetchProductsAction";
+import { setAgentStatus } from "../../redux_tookit/slices/userAgentDataSlice";
 import {
-  addProduct,
-  updateProduct,
-} from "../../redux/actions/fetchProductsAction";
+  addProductData,
+  updateProductData,
+  fetchAgentProductsData,
+} from "../../redux_tookit/slices/realestateDataSlice";
 import FormInput from "../UI/FormInput";
 import "./PropertyForm.css";
 
@@ -14,7 +20,7 @@ const AddListing = ({ isEditing }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const singleUserData = useSelector(
-    (state) => state.singleUserData.singleUserData
+    (state) => state.userAgentData.singleUserData
   );
 
   const [formValues, setFormValues] = useState({
@@ -43,8 +49,12 @@ const AddListing = ({ isEditing }) => {
     validate(formValues);
     if (!Object.values(formValues).includes("")) {
       isEditing
-        ? dispatch(updateProduct(formValues)).then(dispatch(agentStautsActions(true)))
-        : dispatch(addProduct(formValues));
+        ? dispatch(updateProductData(formValues))
+            .then(dispatch(fetchAgentProductsData(formValues.agentId)))
+            .then(dispatch(setAgentStatus(true)))
+        : dispatch(addProductData(formValues)).then(
+            dispatch(fetchAgentProductsData(formValues.agentId))
+          );
       Navigate("/agent");
     }
   };

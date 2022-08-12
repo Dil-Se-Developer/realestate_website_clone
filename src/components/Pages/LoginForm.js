@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserAgentAction } from "../../redux/actions/fetchUserAgentDataAction";
-import { loginAgentActions } from '../../redux/actions/loginAgentActions';
-import { agentStautsActions } from '../../redux/actions/agentStatusActions';
-import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+// import { fetchUserAgentAction } from "../../redux/actions/fetchUserAgentDataAction";
+// import { loginAgentActions } from '../../redux/actions/loginAgentActions';
+// import { agentStautsActions } from '../../redux/actions/agentStatusActions';
+// import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+import {
+  fetchUserAgentData,
+  setLoginStatus,
+  setAgentStatus,
+  setSingleUserData,
+} from "../../redux_tookit/slices/userAgentDataSlice";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
@@ -20,7 +26,7 @@ const LoginForm = (props) => {
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const usersData = useSelector((state) => state.fetchUserAgent.UserAgentData);
+  const usersData = useSelector((state) => state.userAgentData.UserAgentData);
   // const agentStatus = useSelector((state) => state.agentStatus.agentStatus);
   // console.log(agentStatus, 'agentStatus');
   // console.log(usersData);
@@ -35,26 +41,35 @@ const LoginForm = (props) => {
       const userExist = usersEmail.includes(formValues.emailid);
 
       if (userExist) {
-        const findUser = usersData.find((userData) => userData.emailid === formValues.emailid)
-        dispatch(singleUserDataActions(findUser))
-        // console.log(findUser.password, "find"); 
+        const findUser = usersData.find(
+          (userData) => userData.emailid === formValues.emailid
+        );
+        dispatch(setSingleUserData(findUser));
+        // console.log(findUser.password, "find");
         // console.log(formValues.password, 'formval');
-        if (formValues.account === 'customer' && findUser.account === 'customer' && findUser.password === formValues.password) {
-          dispatch(loginAgentActions(true))
+        if (
+          formValues.account === "customer" &&
+          findUser.account === "customer" &&
+          findUser.password === formValues.password
+        ) {
+          dispatch(setLoginStatus(true));
           Navigate("/");
-        } else if (formValues.account === 'agent' && findUser.account === 'agent' && findUser.password === formValues.password) {
-          dispatch(loginAgentActions(true))
-          dispatch(agentStautsActions(true))
+        } else if (
+          formValues.account === "agent" &&
+          findUser.account === "agent" &&
+          findUser.password === formValues.password
+        ) {
+          dispatch(setLoginStatus(true));
+          dispatch(setAgentStatus(true));
           Navigate("/agent");
         } else {
-          alert("Kindly Check Account Type or Password")
+          alert("Kindly Check Account Type or Password");
         }
       } else {
         alert("Kindly Check Emailid");
       }
-
-    };
-  }
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -64,9 +79,8 @@ const LoginForm = (props) => {
   // console.log(formValues);
 
   useEffect(() => {
-    dispatch(fetchUserAgentAction());
-  }, [dispatch]);
-
+    dispatch(fetchUserAgentData());
+  }, []);
 
   const validate = (values) => {
     const errors = {};
