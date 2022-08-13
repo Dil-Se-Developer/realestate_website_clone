@@ -27,10 +27,10 @@ export const updateProductData = createAsyncThunk(
 
 export const deleteProductData = createAsyncThunk(
   "products/deleteProduct",
-  async (id, agentId) => {
-    await axios.delete(`http://localhost:5000/products/${id}`);
+  async (agentProductData) => {
+    await axios.delete(`http://localhost:5000/products/${agentProductData.id}`);
     const response = await axios.get(
-      `http://localhost:5000/products?agentId=${agentId}`
+      `http://localhost:5000/products?agentId=${agentProductData.agentId}`
     );
     return response.data;
   }

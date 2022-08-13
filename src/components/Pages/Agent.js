@@ -9,16 +9,10 @@ const Agent = () => {
   const dispatch = useDispatch();
   const agentProductsData = useSelector((state) => state.agentProductsData.agentProductsData)
   const singleUserData = useSelector((state) => state.userAgentData.singleUserData);
-  // console.log(singleUserData.id);
-  // console.log(agentProductsData.length);
-  let agentProductsDataLength = agentProductsData.length;
 
   useEffect(() => {
     dispatch(fetchAgentProductsData(singleUserData.id))
-  }, [agentProductsDataLength])
-
-  // const filteredAgentProductData = agentProductsData.filter((agentProductData) => agentProductData.agentId === singleUserData.id) 
-  // console.log(agentProductsData);
+  }, [])
 
   return (
     <div className='sellproducts'>

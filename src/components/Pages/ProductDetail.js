@@ -6,7 +6,6 @@ import "./ProductDetail.css";
 const ProductDetail = () => {
   const [productData, setProductData] = useState([]);
   const { productId } = useParams();
-  // console.log(productId);
 
   useEffect(() => {
     axios
@@ -17,7 +16,6 @@ const ProductDetail = () => {
       });
   }, []);
 
-  // console.log(productData);
 
   return (
     <>

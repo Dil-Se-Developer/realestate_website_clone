@@ -38,7 +38,7 @@
     },
     {
       "account": "agent",
-      "firstname": "joe",
+      "firstname": "Pranjal",
       "lastname": "doe",
       "gender": "female",
       "mobileno": "1234567890",
@@ -47,6 +47,30 @@
       "country": "india",
       "password": "123456",
       "id": 4
+    },
+    {
+      "account": "customer",
+      "firstname": "shail",
+      "lastname": "shah",
+      "gender": "male",
+      "mobileno": "1234567890",
+      "emailid": "shail@10gmail.com",
+      "city": "vadodara",
+      "country": "india",
+      "password": "123456",
+      "id": 5
+    },
+    {
+      "account": "agent",
+      "firstname": "shail",
+      "lastname": "shail",
+      "gender": "male",
+      "mobileno": "1234567889",
+      "emailid": "shail@07gmail.com",
+      "city": "vadodara",
+      "country": "india",
+      "password": "123456",
+      "id": 6
     }
   ],
   "products": [
@@ -119,7 +143,7 @@
     {
       "agentId": 4,
       "propertytype": "rent",
-      "propertyname": "Villa on Hollywood",
+      "propertyname": "Billa on Hollywood",
       "propertyaddress": "398 Pete Pascale Pl, New York",
       "propertysq": "789",
       "bedrooms": "6",

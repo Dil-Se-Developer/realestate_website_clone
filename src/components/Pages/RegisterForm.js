@@ -47,10 +47,8 @@ const RegisterForm = () => {
   const registerHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
-    // const userEmaild = usersData.find((e) => e.emailid === formValues.emailid);
     const userEmaild = usersData.map((user) => user.emailid);
     const userEmaildExist = userEmaild.includes(formValues.emailid);
-    // console.log(userEmaildExist);
 
     if (userEmaildExist) {
       alert("user already exit");
@@ -58,7 +56,6 @@ const RegisterForm = () => {
     }
 
     if (Object.keys(validate(formValues)).length === 0) {
-      // console.log(formErrors, "error");
       dispatch(addUserData(formValues));
       dispatch(setSingleUserData(formValues));
       if (formValues.account === "customer") {
@@ -75,9 +72,6 @@ const RegisterForm = () => {
   useEffect(() => {
     dispatch(fetchUserAgentData());
   }, []);
-
-  // console.log(formErrors, "error");
-  // console.log(usersData);
 
   const validate = (values) => {
     const errors = {};
@@ -126,7 +120,6 @@ const RegisterForm = () => {
               inputName="account"
               inputValue="customer"
               onHandleChange={handleChange}
-              // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
               checked={formValues.account === "customer"}
             />
@@ -137,7 +130,6 @@ const RegisterForm = () => {
               inputName="account"
               inputValue="agent"
               onHandleChange={handleChange}
-              // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
               checked={formValues.account === "agent"}
             />
@@ -173,7 +165,6 @@ const RegisterForm = () => {
               inputName="gender"
               inputValue="male"
               onHandleChange={handleChange}
-              // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
               checked={formValues.gender === "male"}
             />
@@ -184,7 +175,6 @@ const RegisterForm = () => {
               inputName="gender"
               inputValue="female"
               onHandleChange={handleChange}
-              // errorMessage={formErrors.lastname}
               customClass={"form_radio"}
               checked={formValues.gender === "female"}
             />

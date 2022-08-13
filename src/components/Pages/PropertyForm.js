@@ -34,7 +34,6 @@ const AddListing = ({ isEditing }) => {
     postimg: "",
   });
 
-  // console.log(formValues, 'formvalues');
   const [errorObj, setErrorObj] = useState({
     propertyname: false,
     propertyaddress: false,
@@ -72,7 +71,6 @@ const AddListing = ({ isEditing }) => {
     });
   };
 
-  // console.log(formValues);
   const uploadImage = async (event) => {
     const file = event.target.files[0];
     const base64 = await convertBase64(file);

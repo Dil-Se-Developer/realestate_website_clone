@@ -12,22 +12,20 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import "./AgentProductCard.css";
 
-const AgentProductCard = (props) => {
+const AgentProductCard = ({agentProductData}) => {
   const dispatch = useDispatch();
   const { agentId, id, propertyname, propertytype, price, postimg } =
-    props.agentProductData;
+    agentProductData;
   const Navigate = useNavigate();
-
   const editHandler = (id) => {
     Navigate(`/agent/editlisting/${id}`);
     dispatch(setAgentStatus(false));
   };
 
-  const deleteHandler = (id, agentId) => {
-    dispatch(deleteProductData(id, agentId))
+  const deleteHandler = (agentProductData) => {
+    dispatch(deleteProductData(agentProductData))
   };
 
-  // console.log(id);
   return (
     <div className="sellcard">
       <img src={postimg} alt="sellitems" />
@@ -44,7 +42,7 @@ const AgentProductCard = (props) => {
         <AiFillDelete
           size={"1.4rem"}
           onClick={() => {
-            deleteHandler(id, agentId);
+            deleteHandler(agentProductData);
           }}
         />
       </div>

@@ -27,9 +27,6 @@ const LoginForm = (props) => {
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
   const usersData = useSelector((state) => state.userAgentData.UserAgentData);
-  // const agentStatus = useSelector((state) => state.agentStatus.agentStatus);
-  // console.log(agentStatus, 'agentStatus');
-  // console.log(usersData);
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -37,7 +34,6 @@ const LoginForm = (props) => {
 
     if (Object.keys(validate(formValues)).length === 0) {
       const usersEmail = usersData.map((user) => user.emailid);
-      // const usersPassword = usersData.map((user) => user.password);
       const userExist = usersEmail.includes(formValues.emailid);
 
       if (userExist) {
@@ -45,8 +41,7 @@ const LoginForm = (props) => {
           (userData) => userData.emailid === formValues.emailid
         );
         dispatch(setSingleUserData(findUser));
-        // console.log(findUser.password, "find");
-        // console.log(formValues.password, 'formval');
+    
         if (
           formValues.account === "customer" &&
           findUser.account === "customer" &&
@@ -76,7 +71,6 @@ const LoginForm = (props) => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  // console.log(formValues);
 
   useEffect(() => {
     dispatch(fetchUserAgentData());

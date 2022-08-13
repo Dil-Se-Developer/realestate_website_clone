@@ -55,8 +55,6 @@ const EditProfile = () => {
     });
   };
 
-  // console.log(existingValues);
-
   const registerHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(existingValues));

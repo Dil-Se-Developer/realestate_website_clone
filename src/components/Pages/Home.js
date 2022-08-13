@@ -24,9 +24,6 @@ const Home = () => {
     setSelectedProperty(value);
   };
 
-  // console.log(selectedProperty);
-  // console.log(productsValue);
-
   const filterProducts = () => {
     if (selectedProperty === "all") {
       return productsValue;
@@ -55,7 +52,6 @@ const Home = () => {
     return searchArray;
   };
 
-  // console.log(searchInput);
   let products = filterProducts();
   products = searchProducts(products);
 
